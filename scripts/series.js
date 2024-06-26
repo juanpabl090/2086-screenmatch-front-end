@@ -16,8 +16,8 @@ function cargarTemporadas() {
             const optionDefault = document.createElement('option');
             optionDefault.value = '';
             optionDefault.textContent = 'Seleccione la temporada'
-            listaTemporadas.appendChild(optionDefault); 
-           
+            listaTemporadas.appendChild(optionDefault);
+
             temporadasUnicas.forEach(temporada => {
                 const option = document.createElement('option');
                 option.value = temporada;
@@ -28,7 +28,7 @@ function cargarTemporadas() {
             const optionTodos = document.createElement('option');
             optionTodos.value = 'todas';
             optionTodos.textContent = 'Todas las temporadas'
-            listaTemporadas.appendChild(optionTodos); 
+            listaTemporadas.appendChild(optionTodos);
         })
         .catch(error => {
             console.error('Error al obtener temporadas:', error);
@@ -40,7 +40,7 @@ function cargarEpisodios() {
     getDatos(`/series/${serieId}/temporadas/${listaTemporadas.value}`)
         .then(data => {
             const temporadasUnicas = [...new Set(data.map(temporada => temporada.temporada))];
-            fichaSerie.innerHTML = ''; 
+            fichaSerie.innerHTML = '';
             temporadasUnicas.forEach(temporada => {
                 const ul = document.createElement('ul');
                 ul.className = 'episodios-lista';
@@ -53,7 +53,7 @@ function cargarEpisodios() {
                     </li>
                 `).join('');
                 ul.innerHTML = listaHTML;
-                
+
                 const paragrafo = document.createElement('p');
                 const linha = document.createElement('br');
                 paragrafo.textContent = `Temporada ${temporada}`;
